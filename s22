@@ -1,0 +1,22 @@
+#!/usr/bin/expect
+
+set prompt "$ "
+
+spawn /usr/bin/ssh hoppr@x.x.x.x
+
+while (1) {
+   expect {
+     "no)? " {
+        send -- "yes\r"
+     }
+
+     "x.x.x.x's password: " {
+         send -- "*******\r"
+     }
+     "$prompt" {
+        break
+     }
+   }
+}
+
+interact

@@ -1,0 +1,59 @@
+#!/bin/sh
+
+if [ "$1" != "" ]; then
+    export MONGOID_HOST=$1
+else
+    
+  echo ""
+  echo "       ser-env [MONGOID_HOST] [RAILS_ENV] [REDIS_HOST]          "
+  echo ""
+fi
+
+if [ "$2" != "" ]; then
+  if [ $2 = "p" ]; then
+    export RAILS_ENV=production
+  elif [ $2 = "d" ]; then
+    export RAILS_ENV=development
+  else
+    export RAILS_ENV=$2
+  fi
+fi
+
+if [ "$3" != "" ]; then
+    export REDIS_HOST=$3
+    export LOCAL_REDIS_HOST=$3
+fi
+
+
+if [ "$1" = "0" ]; then
+  echo ""
+  export MONGOID_HOST=localhost
+  export RAILS_ENV=development
+  export REDIS_HOST=localhost
+  export LOCAL_REDIS_HOST=localhost
+elif [ "$1" = "1" ]; then
+  echo ""
+  export MONGOID_HOST=x.x.x.x
+  export RAILS_ENV=production
+  export REDIS_HOST=x.x.x.x
+  export LOCAL_REDIS_HOST=x.x.x.x
+elif [ "$1" = "2" ]; then
+  echo "connecting to bangalore slave mongo"
+  export MONGOID_HOST=y.y.y.y
+  export RAILS_ENV=production
+  export REDIS_HOST=z.z.z.z
+  export LOCAL_REDIS_HOST=z.z.z.z
+elif [ "$1" = "3" ]; then
+  echo "connecting to airtel slave mongo"
+  export MONGOID_HOST=a.a.a.a
+  export RAILS_ENV=production
+  export REDIS_HOST=b.b.b.b
+  export LOCAL_REDIS_HOST=c.c.c.c
+fi
+
+echo -e "$(tput setaf 6)MONGOID_HOST           $(tput setaf 1)  $MONGOID_HOST"
+echo -e "$(tput setaf 6)RAILS_ENV              $(tput setaf 3)  $RAILS_ENV"
+echo -e "$(tput setaf 6)REDIS_HOST             $(tput setaf 2)  $REDIS_HOST"
+echo -e "$(tput setaf 6)LOCAL_REDIS_HOST       $(tput setaf 5)  $LOCAL_REDIS_HOST\n"
+
+#echo "\n$(tput sgr0)type $(tput bold) ser-env -h $(tput sgr0) for help\n"
