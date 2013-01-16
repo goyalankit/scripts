@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+#
+# works in zsh
+# one good way to use is to make an alias in .zshrc:
+#
+# alias sd="source sw1"
+#
+#
+
+eval cd `fnddrct $1`

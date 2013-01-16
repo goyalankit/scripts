@@ -1,0 +1,8 @@
+#!/bin/sh
+
+#
+# should be used in conjuction with sw1 script
+#
+
+dirn="$(find ~/workspace -type d -name "hoppr_$1*" | head -1)"
+echo $dirn
